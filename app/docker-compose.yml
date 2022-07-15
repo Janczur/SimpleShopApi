@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:${POSTGRES_VERSION:-14}-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-simple_shop}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
+      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
+
+volumes:
+  db-data:
