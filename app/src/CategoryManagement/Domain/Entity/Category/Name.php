@@ -23,4 +23,9 @@ class Name
         }
         return new self($name);
     }
+
+    public function toString(): string
+    {
+        return $this->name;
+    }
 }

@@ -7,5 +7,6 @@
             <generator strategy="NONE"/>
         </id>
         <embedded name="name" class="App\CategoryManagement\Domain\Entity\Category\Name" use-column-prefix="false"/>
+        <embedded name="slug" class="App\CategoryManagement\Domain\Entity\Category\Slug" use-column-prefix="false"/>
     </entity>
 </doctrine-mapping>
