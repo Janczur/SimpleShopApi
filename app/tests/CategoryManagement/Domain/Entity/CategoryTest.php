@@ -46,7 +46,7 @@ class CategoryTest extends KernelTestCase
         $this->categories->add($category);
 
         // Act
-        $category = Category::create($name, $slug, $this->uniquenessChecker);
+        Category::create($name, $slug, $this->uniquenessChecker);
 
     }
 

@@ -43,7 +43,7 @@ final class CategoryFactory extends ModelFactory
         return [
             'uuid' => Uuid::uuid4(),
             'name' => $name = Category\Name::fromString(self::faker()->word),
-            'slug' => Category\Slug::fromName($name)->asString(),
+            'slug' => Category\Slug::fromName($name),
         ];
     }
 }

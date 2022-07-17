@@ -1,0 +1,8 @@
+App\CategoryManagement\Application\Create\CreateCategory:
+  properties:
+    name:
+      - Regex:
+          pattern: !php/const App\CategoryManagement\Domain\Entity\Category\Name::VALID_CATEGORY_NAME_REGEX
+          message: Category name can only contain letters, numbers, spaces, dashes and underscores
+      - Length:
+          max: 100
