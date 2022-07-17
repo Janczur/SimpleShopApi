@@ -13,7 +13,6 @@ use Ramsey\Uuid\UuidInterface;
 
 class Category extends AggregateRoot
 {
-
     private function __construct(
         private readonly UuidInterface $uuid,
         private readonly Name $name,
@@ -27,6 +26,16 @@ class Category extends AggregateRoot
         }
         // do some other logic, like record an event
         return new self(Uuid::uuid4(), $name, $slug);
+    }
+
+    public function uuid(): UuidInterface
+    {
+        return $this->uuid;
+    }
+
+    public function name(): Name
+    {
+        return $this->name;
     }
 
     public function slug(): Slug

@@ -13,9 +13,9 @@ class Name
 
     public static function fromString(string $name): self
     {
-        if (!preg_match('/^[a-zA-Z0-9\-_]+$/', $name)) {
+        if (!preg_match('/^[a-zA-Z0-9\-_\s]+$/', $name)) {
             throw new InvalidArgumentException(
-                'Category name can only contain letters, numbers, dashes and underscores'
+                'Category name can only contain letters, numbers, spaces, dashes and underscores'
             );
         }
         if (strlen($name) > 100) {
