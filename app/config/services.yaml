@@ -12,10 +12,10 @@ services:
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
   _instanceof:
-    App\System\CQRS\CommandHandler:
+    App\Shared\Domain\System\CQRS\CommandHandler:
       tags:
         - { name: messenger.message_handler, bus: command.bus }
-    App\System\CQRS\QueryHandler:
+    App\Shared\Domain\System\CQRS\QueryHandler:
       tags:
         - { name: messenger.message_handler, bus: query.bus }
 
@@ -24,6 +24,6 @@ services:
   App\:
     resource: '../src/'
     exclude:
-      - '../src/Kernel.php'
+      - '../src/shared/Infrastructure/Kernel.php'
 
-  App\System\SystemInterface: '@App\System\System'
+  App\Shared\Domain\System\SystemInterface: '@App\Shared\Infrastructure\System\System'

@@ -2,15 +2,17 @@ version: '3'
 
 services:
   database:
-    image: postgres:${POSTGRES_VERSION:-14}-alpine
+    image: mariadb:10.8.3
+    restart: always
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-simple_shop}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+      MYSQL_DATABASE: ${POSTGRES_DB:-shop}
+      MYSQL_USER: ${POSTGRES_USER:-symfony}
+      MYSQL_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS:-rootPass}
     ports:
-      - "5432:5432"
+      - "3306:3306"
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
+      - db-data:/var/lib/mysql/data:rw
 
 volumes:
   db-data:

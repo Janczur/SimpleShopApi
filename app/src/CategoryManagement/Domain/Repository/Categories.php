@@ -9,5 +9,5 @@ interface Categories
 {
     public function add(Category $category): void;
 
-    public function findBySlug(string $slug): ?Category;
+    public function getBySlug(Category\Slug $slug): ?Category;
 }

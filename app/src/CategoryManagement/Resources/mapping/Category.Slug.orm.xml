@@ -3,6 +3,6 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
     <embeddable name="App\CategoryManagement\Domain\Entity\Category\Slug">
-        <field name="slug" length="100"/>
+        <field name="value" type="string" length="100" column="slug"/>
     </embeddable>
 </doctrine-mapping>

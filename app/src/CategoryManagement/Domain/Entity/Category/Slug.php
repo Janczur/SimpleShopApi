@@ -6,17 +6,17 @@ namespace App\CategoryManagement\Domain\Entity\Category;
 class Slug
 {
     private function __construct(
-        private readonly string $slug
+        private readonly string $value
     ) {}
 
     public static function fromName(Name $name): self
     {
-        $slug = strtolower(preg_replace('/[^a-z0-9]+/', '-', $name->toString()));
+        $slug = preg_replace('/[^a-z0-9]+/', '-', strtolower($name->asString()));
         return new self($slug);
     }
 
-    public function toString(): string
+    public function asString(): string
     {
-        return $this->slug;
+        return $this->value;
     }
 }

@@ -8,7 +8,7 @@ use InvalidArgumentException;
 class Name
 {
     private function __construct(
-        private readonly string $name
+        private readonly string $value
     ) {}
 
     public static function fromString(string $name): self
@@ -24,8 +24,8 @@ class Name
         return new self($name);
     }
 
-    public function toString(): string
+    public function asString(): string
     {
-        return $this->name;
+        return $this->value;
     }
 }

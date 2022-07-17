@@ -5,28 +5,28 @@ namespace App\CategoryManagement\Domain\Entity;
 
 use App\CategoryManagement\Domain\Entity\Category\Name;
 use App\CategoryManagement\Domain\Entity\Category\Slug;
+use App\CategoryManagement\Domain\Exception\CategoryExists;
 use App\CategoryManagement\Domain\Service\CategoryUniquenessChecker;
-use DomainException;
-use Symfony\Component\Uid\Uuid;
+use App\Shared\Domain\Aggregate\AggregateRoot;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
-class Category
+class Category extends AggregateRoot
 {
-    private readonly Uuid $uuid;
-    private readonly Name $name;
-    private readonly Slug $slug;
 
-    public function __construct(
-        Name $name,
-        Slug $slug,
-        CategoryUniquenessChecker $categoryUniquenessChecker
-    )
+    private function __construct(
+        private readonly UuidInterface $uuid,
+        private readonly Name $name,
+        private readonly Slug $slug
+    ) {}
+
+    public static function create(Name $name, Slug $slug, CategoryUniquenessChecker $categoryUniquenessChecker): self
     {
-        if (!$categoryUniquenessChecker->isUnique($this)) {
-            throw new DomainException('Category already exists');
+        if (!$categoryUniquenessChecker->isUnique($slug)) {
+            throw new CategoryExists($name);
         }
-        $this->uuid = Uuid::v4();
-        $this->name = $name;
-        $this->slug = $slug;
+        // do some other logic, like record an event
+        return new self(Uuid::uuid4(), $name, $slug);
     }
 
     public function slug(): Slug

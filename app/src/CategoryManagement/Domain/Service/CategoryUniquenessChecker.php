@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\CategoryManagement\Domain\Service;
 
-use App\CategoryManagement\Domain\Entity\Category;
+use App\CategoryManagement\Domain\Entity\Category\Slug;
 use App\CategoryManagement\Domain\Repository\Categories;
 
 class CategoryUniquenessChecker
@@ -12,8 +12,8 @@ class CategoryUniquenessChecker
         private readonly Categories $categories
     ) {}
 
-    public function isUnique(Category $category): bool
+    public function isUnique(Slug $slug): bool
     {
-        return $this->categories->findBySlug($category->slug()->toString()) === null;
+        return $this->categories->getBySlug($slug) === null;
     }
 }
