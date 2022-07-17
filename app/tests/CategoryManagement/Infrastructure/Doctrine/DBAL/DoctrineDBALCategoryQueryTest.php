@@ -21,6 +21,7 @@ final class DoctrineDBALCategoryQueryTest extends KernelTestCase
         $uuid = Uuid::uuid4();
         $name = Name::fromString('Category');
         $slug = Slug::fromName($name);
+
         CategoryFactory::createOne([
             'uuid' => $uuid,
             'name' => $name,
@@ -32,9 +33,9 @@ final class DoctrineDBALCategoryQueryTest extends KernelTestCase
 
         // Assert
         self::assertNotNull($categoryView);
-        self::assertSame($uuid->toString(), $categoryView->uuid());
-        self::assertSame($name->asString(), $categoryView->name());
-        self::assertSame($slug->asString(), $categoryView->slug());
+        self::assertSame($uuid->toString(), $categoryView->uuid);
+        self::assertSame($name->asString(), $categoryView->name);
+        self::assertSame($slug->asString(), $categoryView->slug);
     }
 
     public function setUp(): void

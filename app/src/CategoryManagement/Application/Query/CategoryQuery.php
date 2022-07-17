@@ -8,4 +8,9 @@ use App\CategoryManagement\Application\Query\Model\Category;
 interface CategoryQuery
 {
     public function category(string $uuid): ?Category;
+
+    /**
+     * @return Category[]
+     */
+    public function findAll(): array;
 }

@@ -27,4 +27,14 @@ class DoctrineDBALCategoryQuery implements CategoryQuery
         return new Category($categoryData['uuid'], $categoryData['name'], $categoryData['slug']);
     }
 
+    public function findAll(): array
+    {
+        $queryBuilder = $this->connection->createQueryBuilder();
+        $queryBuilder->select('uuid', 'name', 'slug')
+            ->from('category');
+        $categories = $queryBuilder->executeQuery()->fetchAllAssociative();
+        return array_map(static function (array $categoryData) {
+            return new Category($categoryData['uuid'], $categoryData['name'], $categoryData['slug']);
+        }, $categories);
+    }
 }

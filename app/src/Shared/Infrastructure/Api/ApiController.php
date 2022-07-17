@@ -14,7 +14,7 @@ abstract class ApiController extends AbstractController
         $this->serializer = $serializer;
     }
 
-    protected function createApiResponse(array|string|null $data = null, int $status = 200, array $headers = []): ApiResponse
+    protected function createApiResponse(mixed $data = null, int $status = 200, array $headers = []): ApiResponse
     {
         $json = $this->serializer->serialize($data, 'json');
 

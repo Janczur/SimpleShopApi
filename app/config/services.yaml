@@ -30,9 +30,3 @@ services:
   App\Shared\Domain\System\SystemInterface: '@App\Shared\Infrastructure\System\System'
 
   App\CategoryManagement\Domain\Repository\Categories: '@App\CategoryManagement\Infrastructure\Doctrine\ORM\DoctrineORMCategories'
-
-#  App\CategoryManagement/Domain/Entity/Category: '@App\CategoryManagement/Domain/Entity/Category'
-
-when@test:
-  services:
-    App\CategoryManagement\Domain\Repository\Categories: '@App\CategoryManagement\Infrastructure\InMemory\InMemoryCategories'

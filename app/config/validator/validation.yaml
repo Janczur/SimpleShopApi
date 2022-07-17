@@ -1,4 +1,4 @@
-App\CategoryManagement\Application\Create\CreateCategory:
+App\CategoryManagement\Application\Command\Create\CreateCategory:
   properties:
     name:
       - Regex:

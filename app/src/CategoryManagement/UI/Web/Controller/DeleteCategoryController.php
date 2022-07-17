@@ -25,7 +25,7 @@ class DeleteCategoryController extends ApiController
         if (!$category = $system->query(new FindByUuid($uuid))) {
             return $this->createApiResponse(status: Response::HTTP_NOT_FOUND);
         }
-        $command = new DeleteCategory(Uuid::fromString($category->uuid()));
+        $command = new DeleteCategory(Uuid::fromString($category->uuid));
         $system->dispatch($command);
         return $this->createApiResponse(status: Response::HTTP_NO_CONTENT);
     }
