@@ -2,9 +2,8 @@
 
 namespace App\Tests\CategoryManagement\Infrastructure\Doctrine\ORM;
 
-use App\CategoryManagement\Domain\Entity\Category;
-use App\CategoryManagement\Domain\Service\CategoryUniquenessChecker;
 use App\CategoryManagement\Infrastructure\Doctrine\ORM\DoctrineORMCategories;
+use App\Tests\Factory\Category\CategoryFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -17,16 +16,12 @@ class DoctrineORMCategoriesTest extends KernelTestCase
     public function categorySuccessfullyAdded(): void
     {
         // Arrange
-        $category = Category::create(
-            $name = Category\Name::fromString('Test2'),
-            Category\Slug::fromName($name),
-            new CategoryUniquenessChecker($this->categories)
-        );
+        $category = CategoryFactory::new()->withoutPersisting()->create()->object();
 
         // Act
         $this->categories->add($category);
         $this->entityManager->flush();
-        $existing = $this->categories->getBySlug($category->slug());
+        $existing = $this->categories->findBySlug($category->slug());
 
         // Assert
         self::assertSame($category->uuid()->toString(), $existing->uuid()->toString());

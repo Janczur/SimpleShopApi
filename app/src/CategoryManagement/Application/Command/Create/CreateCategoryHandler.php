@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\CategoryManagement\Application\Create;
+namespace App\CategoryManagement\Application\Command\Create;
 
 use App\CategoryManagement\Domain\Entity\Category\Name;
 use App\CategoryManagement\Domain\Entity\Category\Slug;

@@ -14,6 +14,6 @@ class CategoryUniquenessChecker
 
     public function isUnique(Slug $slug): bool
     {
-        return $this->categories->getBySlug($slug) === null;
+        return $this->categories->findBySlug($slug) === null;
     }
 }

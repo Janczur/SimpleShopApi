@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+  routing.uuid: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
 
 services:
   # default configuration for services in *this* file
@@ -29,6 +30,8 @@ services:
   App\Shared\Domain\System\SystemInterface: '@App\Shared\Infrastructure\System\System'
 
   App\CategoryManagement\Domain\Repository\Categories: '@App\CategoryManagement\Infrastructure\Doctrine\ORM\DoctrineORMCategories'
+
+#  App\CategoryManagement/Domain/Entity/Category: '@App\CategoryManagement/Domain/Entity/Category'
 
 when@test:
   services:

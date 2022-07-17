@@ -13,7 +13,7 @@ use Ramsey\Uuid\UuidInterface;
 
 class Category extends AggregateRoot
 {
-    private function __construct(
+    public function __construct(
         private readonly UuidInterface $uuid,
         private readonly Name $name,
         private readonly Slug $slug

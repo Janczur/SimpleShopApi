@@ -19,4 +19,9 @@ class Slug
     {
         return $this->value;
     }
+
+    public function equals(Slug $slug): bool
+    {
+        return $this->value === $slug->asString();
+    }
 }

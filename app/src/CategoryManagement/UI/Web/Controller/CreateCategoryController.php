@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\CategoryManagement\UI\Web\Controller;
 
-use App\CategoryManagement\Application\Create\CreateCategory;
+use App\CategoryManagement\Application\Command\Create\CreateCategory;
 use App\CategoryManagement\Domain\Service\CategoryUniquenessChecker;
 use App\Shared\Domain\System\SystemInterface;
 use App\Shared\Infrastructure\Api\ApiController;
