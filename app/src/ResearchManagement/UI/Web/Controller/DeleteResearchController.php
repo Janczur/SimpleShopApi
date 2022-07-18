@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\CategoryManagement\UI\Web\Controller;
+namespace App\ResearchManagement\UI\Web\Controller;
 
-use App\CategoryManagement\Application\Command\Delete\DeleteCategory;
-use App\CategoryManagement\Application\Query\FindByUuid\FindByUuid;
-use App\CategoryManagement\Application\Query\Model\CategoryView;
+use App\ResearchManagement\Application\Command\Delete\DeleteResearch;
+use App\ResearchManagement\Application\Query\FindByUuid\FindByUuid;
+use App\ResearchManagement\Application\Query\Model\ResearchView;
 use App\Shared\Domain\System\SystemInterface;
 use App\Shared\Infrastructure\Api\ApiController;
 use App\Shared\Infrastructure\Api\ApiResponse;
@@ -14,20 +14,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(
-    '/categories/{uuid}',
-    name: 'categories.delete',
+    '/researches/{uuid}',
+    name: 'researches.delete',
     requirements: ['uuid' => '%routing.uuid%'],
     methods: ['DELETE']
 )]
-class DeleteCategoryController extends ApiController
+class DeleteResearchController extends ApiController
 {
     public function __invoke(string $uuid, SystemInterface $system): ApiResponse
     {
-        /** @var CategoryView $category */
-        if (!$category = $system->query(new FindByUuid($uuid))) {
+        /** @var ResearchView $research */
+        if (!$research = $system->query(new FindByUuid($uuid))) {
             return $this->createApiResponse(status: Response::HTTP_NOT_FOUND);
         }
-        $command = new DeleteCategory(Uuid::fromString($category->uuid));
+        $command = new DeleteResearch(Uuid::fromString($research->uuid));
         $system->dispatch($command);
         return $this->createApiResponse(status: Response::HTTP_NO_CONTENT);
     }

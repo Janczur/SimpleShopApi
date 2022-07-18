@@ -9,7 +9,6 @@ use App\Shared\Infrastructure\Api\ApiController;
 use App\Shared\Infrastructure\Api\ApiResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route(
     '/categories/{uuid}',
@@ -19,7 +18,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 )]
 class ShowCategoryController extends ApiController
 {
-    public function __invoke(string $uuid, SystemInterface $system, SerializerInterface $serializer): ApiResponse
+    public function __invoke(string $uuid, SystemInterface $system): ApiResponse
     {
         if (!$category = $system->query(new FindByUuid($uuid))) {
             return $this->createApiResponse(status: Response::HTTP_NOT_FOUND);
