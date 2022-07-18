@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\CategoryManagement\Application\Query\FindAll;
 
 use App\CategoryManagement\Application\Query\CategoryQuery;
-use App\CategoryManagement\Application\Query\Model\Category;
+use App\CategoryManagement\Application\Query\Model\CategoryView;
 use App\Shared\Domain\System\CQRS\QueryHandler;
 
 final class FindAllHandler implements QueryHandler
@@ -14,7 +14,7 @@ final class FindAllHandler implements QueryHandler
     ) {}
 
     /**
-     * @return Category[]
+     * @return CategoryView[]
      */
     public function __invoke(FindAll $query): array
     {

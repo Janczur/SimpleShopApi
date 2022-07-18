@@ -6,3 +6,12 @@ App\CategoryManagement\Application\Command\Create\CreateCategory:
           message: Category name can only contain letters, numbers, spaces, dashes and underscores
       - Length:
           max: 100
+
+App\CategoryManagement\Application\DTO\UpdateCategoryDTO:
+  properties:
+    name:
+      - Regex:
+          pattern: !php/const App\CategoryManagement\Domain\Entity\Category\Name::VALID_CATEGORY_NAME_REGEX
+          message: Category name can only contain letters, numbers, spaces, dashes and underscores
+      - Length:
+          max: 100

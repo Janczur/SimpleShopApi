@@ -15,13 +15,13 @@ class Category extends AggregateRoot
 {
     public function __construct(
         private readonly UuidInterface $uuid,
-        private readonly Name $name,
-        private readonly Slug $slug
+        private Name $name,
+        private Slug $slug
     ) {}
 
-    public static function create(Name $name, Slug $slug, CategoryUniquenessChecker $categoryUniquenessChecker): self
+    public static function create(Name $name, Slug $slug, CategoryUniquenessChecker $uniquenessChecker): self
     {
-        if (!$categoryUniquenessChecker->isUnique($slug)) {
+        if (!$uniquenessChecker->isUnique($slug)) {
             throw new CategoryExists($name);
         }
         // do some other logic, like record an event
@@ -41,5 +41,15 @@ class Category extends AggregateRoot
     public function slug(): Slug
     {
         return $this->slug;
+    }
+
+    public function rename(Name $name, CategoryUniquenessChecker $uniquenessChecker): void
+    {
+        $slug = Slug::fromName($name);
+        if (!$uniquenessChecker->isUnique($slug)) {
+            throw new CategoryExists($name);
+        }
+        $this->name = $name;
+        $this->slug = $slug;
     }
 }

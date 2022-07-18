@@ -17,7 +17,7 @@ final class DeleteCategoryHandler implements CommandHandler
     public function __invoke(DeleteCategory $command): void
     {
         if (!$category = $this->categories->find($command->uuid())) {
-            throw new RuntimeException('Given category not exist');
+            throw new RuntimeException('The given category does not exist');
         }
 
         $this->categories->remove($category);

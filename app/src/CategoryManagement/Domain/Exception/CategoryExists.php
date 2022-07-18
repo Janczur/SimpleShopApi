@@ -20,6 +20,6 @@ class CategoryExists extends DomainError
 
     public function errorMessage(): string
     {
-        return sprintf('Category with name %s already exists', $this->name->asString());
+        return sprintf("Category with name '%s' already exists", $this->name->asString());
     }
 }

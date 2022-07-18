@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\CategoryManagement\Application\Query\Model;
 
-final class Category
+final class CategoryView
 {
     public function __construct(
         public readonly string $uuid,

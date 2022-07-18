@@ -28,6 +28,12 @@ abstract class ApiTestCase extends WebTestCase
         return $this->client->getResponse();
     }
 
+    protected function makePatchRequest(string $endpoint, string $uuid, array $data = []): Response
+    {
+        $this->client->request('PATCH', $endpoint . '/' . $uuid, [], [], [], json_encode($data));
+        return $this->client->getResponse();
+    }
+
     protected function makeDeleteRequest(string $endpoint, string $uuid): Response
     {
         $this->client->request('DELETE', $endpoint . '/' . $uuid);
