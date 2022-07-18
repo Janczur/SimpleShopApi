@@ -112,4 +112,21 @@ class Research extends AggregateRoot
     {
         return $this->updatedAt;
     }
+
+    public function rename(ResearchUniquenessValidator $uniquenessValidator, Name $name): void
+    {
+        if ($name->equals($this->name)) {
+            return;
+        }
+        $slug = Slug::fromName($name);
+        if (!$uniquenessValidator->isUnique($slug, $this->categoryUuid?->toString())) {
+            throw new ResearchExists($name);
+        }
+
+        // do some more logic, like public domain event
+
+        $this->name = $name;
+        $this->slug = $slug;
+        $this->updatedAt = new DateTimeImmutable();
+    }
 }

@@ -22,6 +22,6 @@ class ResearchExists extends DomainError
 
     public function errorMessage(): string
     {
-        return sprintf("Research with name '%s' already exists in given category", $this->name->toString());
+        return sprintf("Research with name '%s' already exists in current category", $this->name->toString());
     }
 }

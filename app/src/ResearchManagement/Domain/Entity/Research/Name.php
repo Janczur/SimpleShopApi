@@ -26,6 +26,11 @@ final class Name
         return new self($name);
     }
 
+    public function equals(Name $name): bool
+    {
+        return $this->value === $name->toString();
+    }
+
     public function toString(): string
     {
         return $this->value;
