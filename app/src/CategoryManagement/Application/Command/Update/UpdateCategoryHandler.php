@@ -16,7 +16,7 @@ class UpdateCategoryHandler implements CommandHandler
     public function __invoke(UpdateCategory $command): void
     {
         $uuid = Uuid::fromString($command->uuid());
-        $name = Name::fromString($command->name());
+        $name = Name::from($command->name());
 
         $this->updater->__invoke($uuid, $name);
     }

@@ -2,6 +2,8 @@
 
 namespace App\Tests\CategoryManagement\Infrastructure\Doctrine\ORM;
 
+use App\CategoryManagement\Domain\Entity\Category\Name;
+use App\CategoryManagement\Domain\Entity\Category\Slug;
 use App\CategoryManagement\Domain\Repository\Categories;
 use App\CategoryManagement\Infrastructure\Doctrine\ORM\DoctrineORMCategories;
 use App\Tests\Factory\Category\CategoryFactory;
@@ -26,8 +28,8 @@ class DoctrineORMCategoriesTest extends KernelTestCase
 
         // Assert
         self::assertSame($category->uuid()->toString(), $existing->uuid()->toString());
-        self::assertSame($category->name()->asString(), $existing->name()->asString());
-        self::assertSame($category->slug()->asString(), $existing->slug()->asString());
+        self::assertSame($category->name()->toString(), $existing->name()->toString());
+        self::assertSame($category->slug()->toString(), $existing->slug()->toString());
     }
 
     /** @test */
@@ -53,21 +55,25 @@ class DoctrineORMCategoriesTest extends KernelTestCase
     public function itCorrectlyFindsCategoryBySlug(): void
     {
         // Arrange
-        $category = CategoryFactory::new()->withoutPersisting()->create()->object();
-        $this->categories->add($category);
-        $this->entityManager->flush();
+        CategoryFactory::createOne([
+            'uuid' => $uuid = Uuid::uuid4(),
+            'name' => $name = Name::from('Test Category'),
+            'slug' => $slug = Slug::fromName($name),
+        ]);
 
         // Act
-        $foundCategory = $this->categories->findBySlug($category->slug());
+        $category = $this->categories->findBySlug($slug);
 
         // Assert
-        self::assertNotNull($foundCategory);
-        self::assertSame($category->uuid()->toString(), $foundCategory->uuid()->toString());
+        self::assertNotNull($category);
+        self::assertSame($uuid->toString(), $category->uuid()->toString());
+        self::assertSame($name->toString(), $category->name()->toString());
+        self::assertSame($slug->toString(), $category->slug()->toString());
     }
 
     protected function setUp(): void
     {
-        $this->entityManager = self::bootKernel()->getContainer()->get('doctrine')->getManager();
-        $this->categories = new DoctrineORMCategories($this->entityManager);
+        $entityManager = self::bootKernel()->getContainer()->get('doctrine')->getManager();
+        $this->categories = new DoctrineORMCategories($entityManager);
     }
 }

@@ -4,14 +4,14 @@ namespace App\Tests\CategoryManagement\Domain\Service;
 
 use App\CategoryManagement\Domain\Entity\Category;
 use App\CategoryManagement\Domain\Repository\Categories;
-use App\CategoryManagement\Domain\Service\CategoryUniquenessChecker;
+use App\CategoryManagement\Domain\Service\CategoryUniquenessValidator;
 use App\CategoryManagement\Infrastructure\InMemory\InMemoryCategories;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 final class CategoryUniquenessCheckerTest extends KernelTestCase
 {
     private Categories $categories;
-    private CategoryUniquenessChecker $uniquenessChecker;
+    private CategoryUniquenessValidator $uniquenessChecker;
 
     /**
      * @test
@@ -19,13 +19,12 @@ final class CategoryUniquenessCheckerTest extends KernelTestCase
     public function itReturnsTrueWhenCategoryIsUnique(): void
     {
         // Arrange
-        $name = Category\Name::fromString('Test');
-        $slug = Category\Slug::fromName($name);
-        $category = Category::create($name, $slug, $this->uniquenessChecker);
+        $name = Category\Name::from('Test');
+        $category = Category::create($this->uniquenessChecker, $name);
 
         $this->categories->add($category);
 
-        $otherCategoryName = Category\Name::fromString('Test2');
+        $otherCategoryName = Category\Name::from('Test2');
         $otherCategorySlug = Category\Slug::fromName($otherCategoryName);
 
         // Act && Assert
@@ -38,19 +37,18 @@ final class CategoryUniquenessCheckerTest extends KernelTestCase
     public function itReturnsFalseWhenCategoryIsNotUnique(): void
     {
         // Arrange
-        $name = Category\Name::fromString('Test');
-        $slug = Category\Slug::fromName($name);
-        $category = Category::create($name, $slug, $this->uniquenessChecker);
+        $name = Category\Name::from('Test');
+        $category = Category::create($this->uniquenessChecker, $name);
         $this->categories->add($category);
 
         // Act && Assert
-        $this->assertFalse($this->uniquenessChecker->isUnique($slug));
+        $this->assertFalse($this->uniquenessChecker->isUnique($category->slug()));
     }
 
     protected function setUp(): void
     {
         $this->categories = new InMemoryCategories();
-        $this->uniquenessChecker = new CategoryUniquenessChecker($this->categories);
+        $this->uniquenessChecker = new CategoryUniquenessValidator($this->categories);
     }
 
 }

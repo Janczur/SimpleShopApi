@@ -4,32 +4,31 @@ namespace App\Tests\CategoryManagement\Domain\Entity;
 
 use App\CategoryManagement\Domain\Entity\Category;
 use App\CategoryManagement\Domain\Exception\CategoryExists;
-use App\CategoryManagement\Domain\Service\CategoryUniquenessChecker;
+use App\CategoryManagement\Domain\Service\CategoryUniquenessValidator;
 use App\CategoryManagement\Infrastructure\InMemory\InMemoryCategories;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class CategoryTest extends KernelTestCase
 {
-    private readonly CategoryUniquenessChecker $uniquenessChecker;
+    private readonly CategoryUniquenessValidator $uniquenessValidator;
     private readonly InMemoryCategories $categories;
 
     /** @test */
     public function itCanBeCreatedFromNameAndSlug(): void
     {
         // Arrange
-        $name = Category\Name::fromString('Test');
-        $slug = Category\Slug::fromName($name);
+        $name = Category\Name::from('Test');
 
         // Act
-        $category = Category::create($name, $slug, $this->uniquenessChecker);
+        $category = Category::create($this->uniquenessValidator, $name);
 
         // Assert
         self::assertSame([
             'name' => 'Test',
             'slug' => 'test'
         ], [
-            'name' => $category->name()->asString(),
-            'slug' => $category->slug()->asString()
+            'name' => $category->name()->toString(),
+            'slug' => $category->slug()->toString()
         ]);
     }
 
@@ -40,19 +39,18 @@ class CategoryTest extends KernelTestCase
         $this->expectException(CategoryExists::class);
 
         // Arrange
-        $name = Category\Name::fromString('Test');
-        $slug = Category\Slug::fromName($name);
-        $category = Category::create($name, $slug, $this->uniquenessChecker);
+        $name = Category\Name::from('Test');
+        $category = Category::create($this->uniquenessValidator, $name);
         $this->categories->add($category);
 
         // Act
-        Category::create($name, $slug, $this->uniquenessChecker);
+        Category::create($this->uniquenessValidator, $name);
 
     }
 
-    protected function setUp(): void
+    public function setUp(): void
     {
         $this->categories = new InMemoryCategories();
-        $this->uniquenessChecker = new CategoryUniquenessChecker($this->categories);
+        $this->uniquenessValidator = new CategoryUniquenessValidator($this->categories);
     }
 }

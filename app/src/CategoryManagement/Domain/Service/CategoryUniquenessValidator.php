@@ -6,7 +6,7 @@ namespace App\CategoryManagement\Domain\Service;
 use App\CategoryManagement\Domain\Entity\Category\Slug;
 use App\CategoryManagement\Domain\Repository\Categories;
 
-class CategoryUniquenessChecker
+class CategoryUniquenessValidator
 {
     public function __construct(
         private readonly Categories $categories

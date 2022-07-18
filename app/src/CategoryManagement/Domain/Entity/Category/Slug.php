@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\CategoryManagement\Domain\Entity\Category;
 
-class Slug
+use App\Shared\Domain\Utils\Sluggerizer;
+
+final class Slug
 {
     private function __construct(
         private readonly string $value
@@ -11,17 +13,17 @@ class Slug
 
     public static function fromName(Name $name): self
     {
-        $slug = preg_replace('/[^a-z0-9]+/', '-', strtolower($name->asString()));
+        $slug = Sluggerizer::slugify($name->toString());
         return new self($slug);
     }
 
-    public function asString(): string
+    public function toString(): string
     {
         return $this->value;
     }
 
     public function equals(Slug $slug): bool
     {
-        return $this->value === $slug->asString();
+        return $this->value === $slug->toString();
     }
 }

@@ -6,12 +6,12 @@ namespace App\CategoryManagement\Domain\Entity;
 use App\CategoryManagement\Domain\Entity\Category\Name;
 use App\CategoryManagement\Domain\Entity\Category\Slug;
 use App\CategoryManagement\Domain\Exception\CategoryExists;
-use App\CategoryManagement\Domain\Service\CategoryUniquenessChecker;
+use App\CategoryManagement\Domain\Service\CategoryUniquenessValidator;
 use App\Shared\Domain\Aggregate\AggregateRoot;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-class Category extends AggregateRoot
+final class Category extends AggregateRoot
 {
     public function __construct(
         private readonly UuidInterface $uuid,
@@ -19,8 +19,9 @@ class Category extends AggregateRoot
         private Slug $slug
     ) {}
 
-    public static function create(Name $name, Slug $slug, CategoryUniquenessChecker $uniquenessChecker): self
+    public static function create(CategoryUniquenessValidator $uniquenessChecker, Name $name): self
     {
+        $slug = Slug::fromName($name);
         if (!$uniquenessChecker->isUnique($slug)) {
             throw new CategoryExists($name);
         }
@@ -43,7 +44,7 @@ class Category extends AggregateRoot
         return $this->slug;
     }
 
-    public function rename(Name $name, CategoryUniquenessChecker $uniquenessChecker): void
+    public function rename(CategoryUniquenessValidator $uniquenessChecker, Name $name): void
     {
         $slug = Slug::fromName($name);
         if (!$uniquenessChecker->isUnique($slug)) {

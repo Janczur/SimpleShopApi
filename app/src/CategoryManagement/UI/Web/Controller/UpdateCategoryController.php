@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(
     '/categories/{uuid}',
-    name: 'category.update',
+    name: 'categories.update',
     requirements: ['uuid' => '%routing.uuid%'],
     methods: ['PATCH']
 )]

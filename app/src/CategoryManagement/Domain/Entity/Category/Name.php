@@ -5,15 +5,15 @@ namespace App\CategoryManagement\Domain\Entity\Category;
 
 use InvalidArgumentException;
 
-class Name
+final class Name
 {
-    public const VALID_CATEGORY_NAME_REGEX = '/^[a-zA-Z0-9\-_\s]+$/';
+    public const VALID_CATEGORY_NAME_REGEX = '/^[\p{L}0-9\-_\s]+$/u';
 
     private function __construct(
         private readonly string $value
     ) {}
 
-    public static function fromString(string $name): self
+    public static function from(string $name): self
     {
         if (!preg_match(self::VALID_CATEGORY_NAME_REGEX, $name)) {
             throw new InvalidArgumentException(
@@ -26,7 +26,7 @@ class Name
         return new self($name);
     }
 
-    public function asString(): string
+    public function toString(): string
     {
         return $this->value;
     }

@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(
     '/categories',
-    name: 'category.index',
+    name: 'categories.index',
     methods: ['GET']
 )]
 class ListCategoriesController extends ApiController

@@ -16,7 +16,7 @@ final class UpdateCategoryTest extends ApiTestCase
         // Arrange
         CategoryFactory::createOne([
             'uuid' => $uuid = Uuid::uuid4(),
-            'name' => Name::fromString('Category name'),
+            'name' => Name::from('Category name'),
         ]);
         $data = ['name' => 'New category name',];
 

@@ -17,7 +17,7 @@ final class ShowCategoryTest extends ApiTestCase
         // Arrange
         CategoryFactory::createOne([
             'uuid' => $uuid = Uuid::uuid4(),
-            'name' => $name = Name::fromString('Category name'),
+            'name' => $name = Name::from('Category name'),
             'slug' => $slug = Slug::fromName($name),
         ]);
 
@@ -28,8 +28,8 @@ final class ShowCategoryTest extends ApiTestCase
         $this->assertEquals(200, $response->getStatusCode());
         $expected = [
             'uuid' => $uuid->toString(),
-            'name' => $name->asString(),
-            'slug' => $slug->asString(),
+            'name' => $name->toString(),
+            'slug' => $slug->toString(),
         ];
         $this->assertJsonStringEqualsJsonString(json_encode($expected), $response->getContent());
     }

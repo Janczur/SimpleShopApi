@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 #[Route(
     '/categories/{uuid}',
-    name: 'category.delete',
+    name: 'categories.delete',
     requirements: ['uuid' => '%routing.uuid%'],
     methods: ['DELETE']
 )]

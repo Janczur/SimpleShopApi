@@ -5,7 +5,7 @@ namespace App\Tests\CategoryManagement\Application\Command\Update;
 use App\CategoryManagement\Application\Command\Update\CategoryUpdater;
 use App\CategoryManagement\Domain\Entity\Category\Name;
 use App\CategoryManagement\Domain\Repository\Categories;
-use App\CategoryManagement\Domain\Service\CategoryUniquenessChecker;
+use App\CategoryManagement\Domain\Service\CategoryUniquenessValidator;
 use App\CategoryManagement\Infrastructure\InMemory\InMemoryCategories;
 use App\Tests\Factory\Category\CategoryFactory;
 use Ramsey\Uuid\Uuid;
@@ -20,7 +20,7 @@ class CategoryUpdaterTest extends KernelTestCase
     {
         self::bootKernel();
         $this->categories = new InMemoryCategories();
-        $uniquenessChecker = new CategoryUniquenessChecker($this->categories);
+        $uniquenessChecker = new CategoryUniquenessValidator($this->categories);
         $this->categoryUpdater = new CategoryUpdater($this->categories, $uniquenessChecker);
     }
 
@@ -30,17 +30,17 @@ class CategoryUpdaterTest extends KernelTestCase
         // Arrange
         $category = CategoryFactory::new()->withoutPersisting()->create([
             'uuid' => $uuid = Uuid::uuid4(),
-            'name' => Name::fromString('Original category name'),
+            'name' => Name::from('Original category name'),
         ])->object();
         $this->categories->add($category);
-        $newName = Name::fromString('New category name');
+        $newName = Name::from('New category name');
 
         // Act
         $this->categoryUpdater->__invoke($uuid, $newName);
         $category = $this->categories->find($uuid);
 
         // Assert
-        $this->assertSame($newName->asString(), $category->name()->asString());
+        $this->assertSame($newName->toString(), $category->name()->toString());
     }
 
 }

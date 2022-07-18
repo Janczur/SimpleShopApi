@@ -1,0 +1,25 @@
+<doctrine-mapping xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\ResearchManagement\Domain\Entity\Research">
+        <id name="uuid" type="uuid">
+            <generator strategy="NONE"/>
+        </id>
+        <embedded name="name" class="App\ResearchManagement\Domain\Entity\Research\Name" use-column-prefix="false"/>
+        <embedded name="slug" class="App\ResearchManagement\Domain\Entity\Research\Slug" use-column-prefix="false"/>
+        <embedded name="code" class="App\ResearchManagement\Domain\Entity\Research\Code" use-column-prefix="false"/>
+        <embedded name="icdCode" class="App\ResearchManagement\Domain\Entity\Research\IcdCode"
+                  use-column-prefix="false"/>
+        <field name="categoryUuid" type="uuid" nullable="true"/>
+        <field name="shortDescription" length="255" nullable="true"/>
+        <field name="description" type="text" nullable="true"/>
+
+        <field name="createdAt" type="datetime_immutable"/>
+        <field name="updatedAt" type="datetime_immutable"/>
+
+        <unique-constraints>
+            <unique-constraint columns="slug,category_uuid" name="search_idx"/>
+        </unique-constraints>
+    </entity>
+</doctrine-mapping>

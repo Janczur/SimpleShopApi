@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route(
     '/categories/{uuid}',
-    name: 'category.show',
+    name: 'categories.show',
     requirements: ['uuid' => '%routing.uuid%'],
     methods: ['GET']
 )]

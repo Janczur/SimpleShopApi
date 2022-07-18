@@ -27,7 +27,7 @@ class DoctrineORMCategories implements Categories
     public function findBySlug(Category\Slug $slug): ?Category
     {
         return $this->entityManager->getRepository(Category::class)->findOneBy([
-            'slug.value' => $slug->asString()
+            'slug.value' => $slug->toString()
         ]);
     }
 

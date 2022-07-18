@@ -17,6 +17,13 @@ doctrine:
         prefix: 'App\CategoryManagement\Domain\Entity'
         alias: Category
 
+      Research:
+        is_bundle: false
+        type: xml
+        dir: '%kernel.project_dir%/src/ResearchManagement/Resources/mapping'
+        prefix: 'App\ResearchManagement\Domain\Entity'
+        alias: Research
+
 when@prod:
   doctrine:
     orm:

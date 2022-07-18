@@ -26,12 +26,6 @@ use Zenstruck\Foundry\Proxy;
  */
 final class CategoryFactory extends ModelFactory
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
-    }
 
     protected static function getClass(): string
     {
@@ -42,7 +36,7 @@ final class CategoryFactory extends ModelFactory
     {
         return [
             'uuid' => Uuid::uuid4(),
-            'name' => $name = Category\Name::fromString(self::faker()->word),
+            'name' => $name = Category\Name::from(self::faker()->word),
             'slug' => Category\Slug::fromName($name),
         ];
     }

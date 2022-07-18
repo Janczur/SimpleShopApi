@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\CategoryManagement\Domain\Entity\Category;
+namespace CategoryManagement\Domain\Entity\Category;
 
 use App\CategoryManagement\Domain\Entity\Category\Name;
 use InvalidArgumentException;
@@ -9,37 +9,44 @@ use PHPUnit\Framework\TestCase;
 class NameTest extends TestCase
 {
     /** @test */
-    public function itCanBeCreatedFromAString(): void
+    public function canCreateNameFromAString(): void
     {
-        $name = Name::fromString('Test');
-        $this->assertEquals('Test', $name->asString());
+        $name = Name::from('Test');
+        $this->assertEquals('Test', $name->toString());
     }
 
     /** @test */
-    public function itCanBeCreatedWithLettersNumbersSpacesDashesAndUnderScores(): void
+    public function canCreateNameWithPolishCharacters(): void
     {
-        $name = Name::fromString('Test 123_foo-456_');
-        $this->assertEquals('Test 123_foo-456_', $name->asString());
+        $name = Name::from('AaĄąBbCcĆćDdEeĘęFfGgHhIiJjKkLlŁłMmNnŃńOoÓóPpRrSsŚśTtUuWwYyZzŹźŻż');
+        $this->assertEquals('AaĄąBbCcĆćDdEeĘęFfGgHhIiJjKkLlŁłMmNnŃńOoÓóPpRrSsŚśTtUuWwYyZzŹźŻż', $name->toString());
     }
 
     /** @test */
-    public function itCannotBeCreatedFromSpecialCharacters(): void
+    public function canCreateNameWithLettersNumbersSpacesDashesAndUnderScores(): void
+    {
+        $name = Name::from('Test 123_foo-456_');
+        $this->assertEquals('Test 123_foo-456_', $name->toString());
+    }
+
+    /** @test */
+    public function canCreateNameFromSpecialCharacters(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        Name::fromString('Test $100%');
+        Name::from('Test $100%');
     }
 
     /** @test */
-    public function itCannotBeCreatedWithMoreThan100Characters(): void
+    public function canCreateNameWithMoreThan100Characters(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        Name::fromString(str_repeat('a', 101));
+        Name::from(str_repeat('a', 101));
     }
 
     /** @test */
-    public function itCannotBeCreatedFromEmptyString(): void
+    public function canCreateNameFromEmptyString(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $name = Name::fromString('');
+        Name::from('');
     }
 }

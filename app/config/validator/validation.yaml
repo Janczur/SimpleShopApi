@@ -1,6 +1,7 @@
 App\CategoryManagement\Application\Command\Create\CreateCategory:
   properties:
     name:
+      - NotBlank: ~
       - Regex:
           pattern: !php/const App\CategoryManagement\Domain\Entity\Category\Name::VALID_CATEGORY_NAME_REGEX
           message: Category name can only contain letters, numbers, spaces, dashes and underscores
@@ -10,8 +11,35 @@ App\CategoryManagement\Application\Command\Create\CreateCategory:
 App\CategoryManagement\Application\DTO\UpdateCategoryDTO:
   properties:
     name:
+      - NotBlank: ~
       - Regex:
           pattern: !php/const App\CategoryManagement\Domain\Entity\Category\Name::VALID_CATEGORY_NAME_REGEX
           message: Category name can only contain letters, numbers, spaces, dashes and underscores
       - Length:
           max: 100
+
+App\ResearchManagement\Application\Command\Create\CreateResearch:
+  properties:
+    categoryUuid:
+      - Uuid: ~
+    name:
+      - NotBlank: ~
+      - Regex:
+          pattern: !php/const App\ResearchManagement\Domain\Entity\Research\Name::VALID_RESEARCH_NAME_REGEX
+          message: Research name can only contain letters, numbers, spaces, dashes, commas and dots
+      - Length:
+          max: 100
+    code:
+      - NotBlank: ~
+      - Range:
+          min: 1
+          max: 9999
+    icdCode:
+      - NotBlank: ~
+      - Regex:
+          pattern: !php/const App\ResearchManagement\Domain\Entity\Research\IcdCode::VALID_ICD_CODE_REGEX
+          message: Invalid ICD code
+    shortDescription:
+      - Length:
+          min: 3
+          max: 255

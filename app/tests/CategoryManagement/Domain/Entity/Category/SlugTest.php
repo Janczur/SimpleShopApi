@@ -17,22 +17,10 @@ class SlugTest extends TestCase
     }
 
     /** @test */
-    public function itCanBeCreatedFromTheCategoryName(): void
+    public function canCreateSlugFromTheCategoryName(): void
     {
-        $name = Name::fromString('Test');
+        $name = Name::from('Test');
         $slug = Slug::fromName($name);
-        $this->assertEquals('test', $slug->asString());
-    }
-
-    /** @test */
-    public function valueIsSluggerizedCorrectly(): void
-    {
-        $name = Name::fromString('Test');
-        $slug = Slug::fromName($name);
-        $this->assertEquals('test', $slug->asString());
-
-        $name = Name::fromString('Test    space slug_with_underscores');
-        $slug = Slug::fromName($name);
-        $this->assertEquals('test-space-slug-with-underscores', $slug->asString());
+        $this->assertEquals('test', $slug->toString());
     }
 }

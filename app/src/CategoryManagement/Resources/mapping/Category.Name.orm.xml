@@ -5,5 +5,4 @@
     <embeddable name="App\CategoryManagement\Domain\Entity\Category\Name">
         <field name="value" type="string" length="100" column="name"/>
     </embeddable>
-    >
 </doctrine-mapping>
