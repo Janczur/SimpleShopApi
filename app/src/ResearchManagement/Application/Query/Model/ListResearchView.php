@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\ResearchManagement\Application\Query\Model;
 
-class ListResearchView
+final class ListResearchView
 {
     public function __construct(
         public readonly string $name,

@@ -8,7 +8,7 @@ use App\ResearchManagement\Domain\Entity\Research\IcdCode;
 use App\ResearchManagement\Domain\Entity\Research\Name;
 use App\Shared\Domain\System\CQRS\CommandHandler;
 
-class CreateResearchHandler implements CommandHandler
+final class CreateResearchHandler implements CommandHandler
 {
     public function __construct(
         private readonly ResearchCreator $researchCreator,

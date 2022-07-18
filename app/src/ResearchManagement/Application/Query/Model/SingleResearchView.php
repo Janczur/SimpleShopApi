@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\ResearchManagement\Application\Query\Model;
 
-class SingleResearchView
+final class SingleResearchView
 {
     public function __construct(
         public readonly string $uuid,

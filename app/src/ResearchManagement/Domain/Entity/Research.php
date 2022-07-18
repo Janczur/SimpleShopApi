@@ -129,4 +129,29 @@ class Research extends AggregateRoot
         $this->slug = $slug;
         $this->updatedAt = new DateTimeImmutable();
     }
+
+    public function update(?Code $code, ?IcdCode $icdCode, ?string $shortDescription, ?string $description): void
+    {
+        if ($code && $code->equals($this->code)) {
+            $code = null;
+        }
+        if ($icdCode && $this->icdCode && $icdCode->equals($this->icdCode)) {
+            $icdCode = null;
+        }
+        if ($shortDescription && $shortDescription === $this->shortDescription) {
+            $shortDescription = null;
+        }
+        if ($description && $description === $this->description) {
+            $description = null;
+        }
+        if (!$code && !$icdCode && !$shortDescription && !$description) {
+            return;
+        }
+        // do some more logic, like public domain event
+        $this->code = $code ?? $this->code;
+        $this->icdCode = $icdCode ?? $this->icdCode;
+        $this->shortDescription = $shortDescription ?? $this->shortDescription;
+        $this->description = $description ?? $this->description;
+        $this->updatedAt = new DateTimeImmutable();
+    }
 }

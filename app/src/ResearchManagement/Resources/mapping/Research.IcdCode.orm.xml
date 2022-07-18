@@ -3,6 +3,6 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
     <embeddable name="App\ResearchManagement\Domain\Entity\Research\IcdCode">
-        <field name="value" type="string" length="7" column="icd_code"/>
+        <field name="value" type="string" length="7" nullable="true" column="icd_code"/>
     </embeddable>
 </doctrine-mapping>

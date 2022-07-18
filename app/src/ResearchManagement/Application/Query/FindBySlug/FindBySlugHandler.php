@@ -7,7 +7,7 @@ use App\ResearchManagement\Application\Query\Model\SingleResearchView;
 use App\ResearchManagement\Application\Query\ResearchQuery;
 use App\Shared\Domain\System\CQRS\QueryHandler;
 
-class FindBySlugHandler implements QueryHandler
+final class FindBySlugHandler implements QueryHandler
 {
     public function __construct(
         private readonly ResearchQuery $researchQuery

@@ -6,7 +6,7 @@ namespace App\ResearchManagement\Application\Command\Rename;
 use App\ResearchManagement\Application\DTO\RenameResearchDTO;
 use App\Shared\Domain\System\CQRS\Command;
 
-class RenameResearch implements Command
+final class RenameResearch implements Command
 {
     public function __construct(
         private readonly string $uuid,

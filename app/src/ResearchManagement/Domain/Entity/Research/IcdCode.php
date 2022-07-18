@@ -28,6 +28,11 @@ final class IcdCode
         return new self($code);
     }
 
+    public function equals(IcdCode $icdCode): bool
+    {
+        return $this->value === $icdCode->toString();
+    }
+
     public function toString(): string
     {
         return $this->value;

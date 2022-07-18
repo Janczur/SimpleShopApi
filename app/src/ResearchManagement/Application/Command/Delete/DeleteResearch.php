@@ -6,7 +6,7 @@ namespace App\ResearchManagement\Application\Command\Delete;
 use App\Shared\Domain\System\CQRS\Command;
 use Ramsey\Uuid\UuidInterface;
 
-class DeleteResearch implements Command
+final class DeleteResearch implements Command
 {
     public function __construct(
         private readonly UuidInterface $uuid

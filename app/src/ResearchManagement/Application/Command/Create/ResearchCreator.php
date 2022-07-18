@@ -11,7 +11,7 @@ use App\ResearchManagement\Domain\Repository\Researches;
 use App\ResearchManagement\Domain\Service\ResearchCategoryValidator;
 use App\ResearchManagement\Domain\Service\ResearchUniquenessValidator;
 
-class ResearchCreator
+final class ResearchCreator
 {
     public function __construct(
         private readonly ResearchCategoryValidator $researchCategoryValidator,

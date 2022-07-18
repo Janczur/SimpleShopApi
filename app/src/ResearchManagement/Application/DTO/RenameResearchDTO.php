@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\ResearchManagement\Application\DTO;
 
-class RenameResearchDTO
+final class RenameResearchDTO
 {
     public function __construct(
         private readonly string $name

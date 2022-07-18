@@ -6,7 +6,7 @@ namespace App\ResearchManagement\Application\Query\FindByCategorySlug;
 use App\ResearchManagement\Application\Query\ResearchQuery;
 use App\Shared\Domain\System\CQRS\QueryHandler;
 
-class FindByCategorySlugHandler implements QueryHandler
+final class FindByCategorySlugHandler implements QueryHandler
 {
     public function __construct(
         private readonly ResearchQuery $researchQuery

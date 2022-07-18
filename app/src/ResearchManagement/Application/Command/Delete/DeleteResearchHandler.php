@@ -7,7 +7,7 @@ use App\ResearchManagement\Domain\Repository\Researches;
 use App\Shared\Domain\System\CQRS\CommandHandler;
 use RuntimeException;
 
-class DeleteResearchHandler implements CommandHandler
+final class DeleteResearchHandler implements CommandHandler
 {
     public function __construct(
         private readonly Researches $researches

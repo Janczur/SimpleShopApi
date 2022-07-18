@@ -5,7 +5,7 @@ namespace App\ResearchManagement\Application\Query\FindBySlug;
 
 use App\Shared\Domain\System\CQRS\Query;
 
-class FindBySlug implements Query
+final class FindBySlug implements Query
 {
     public function __construct(
         private readonly string $slug

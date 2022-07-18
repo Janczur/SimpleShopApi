@@ -27,6 +27,11 @@ final class Code
         return (string)$this->value;
     }
 
+    public function equals(Code $code)
+    {
+        return $this->value === $code->toInt();
+    }
+
     public function toInt(): int
     {
         return $this->value;

@@ -35,7 +35,21 @@ App\ResearchManagement\Application\Command\Create\CreateResearch:
           min: 1
           max: 9999
     icdCode:
-      - NotBlank: ~
+      - Regex:
+          pattern: !php/const App\ResearchManagement\Domain\Entity\Research\IcdCode::VALID_ICD_CODE_REGEX
+          message: Invalid ICD code
+    shortDescription:
+      - Length:
+          min: 3
+          max: 255
+
+App\ResearchManagement\Application\DTO\UpdateResearchDTO:
+  properties:
+    code:
+      - Range:
+          min: 1
+          max: 9999
+    icdCode:
       - Regex:
           pattern: !php/const App\ResearchManagement\Domain\Entity\Research\IcdCode::VALID_ICD_CODE_REGEX
           message: Invalid ICD code

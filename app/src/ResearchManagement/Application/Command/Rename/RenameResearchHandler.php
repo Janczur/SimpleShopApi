@@ -7,7 +7,7 @@ use App\ResearchManagement\Domain\Entity\Research\Name;
 use App\Shared\Domain\System\CQRS\CommandHandler;
 use Ramsey\Uuid\Uuid;
 
-class RenameResearchHandler implements CommandHandler
+final class RenameResearchHandler implements CommandHandler
 {
     public function __construct(
         private readonly ResearchRenamer $researchRenamer
