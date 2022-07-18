@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace App\ResearchManagement\Infrastructure\Doctrine\DBAL;
 
+use App\ResearchManagement\Application\Query\Model\ListResearchView;
 use App\ResearchManagement\Application\Query\Model\ResearchCategoryView;
-use App\ResearchManagement\Application\Query\Model\ResearchView;
+use App\ResearchManagement\Application\Query\Model\SingleResearchView;
 use App\ResearchManagement\Application\Query\ResearchQuery;
 use Doctrine\DBAL\Connection;
 
@@ -15,7 +16,12 @@ class DoctrineDBALResearchQuery implements ResearchQuery
         private readonly Connection $connection
     ) {}
 
-    public function research(string $uuid): ?ResearchView
+    public function research(string $uuid): ?SingleResearchView
+    {
+        return $this->findBy('uuid', $uuid);
+    }
+
+    private function findBy($field, $value): ?SingleResearchView
     {
         $queryBuilder = $this->connection->createQueryBuilder();
         $queryBuilder->select(
@@ -30,8 +36,8 @@ class DoctrineDBALResearchQuery implements ResearchQuery
             'created_at'
         )
             ->from('research')
-            ->where('uuid = :uuid')
-            ->setParameter('uuid', $uuid);
+            ->where("$field = :$field")
+            ->setParameter($field, $value);
         $result = $queryBuilder->executeQuery();
         if (!$researchData = $result->fetchAssociative()) {
             return null;
@@ -41,7 +47,7 @@ class DoctrineDBALResearchQuery implements ResearchQuery
         } else {
             $category = null;
         }
-        return new ResearchView(
+        return new SingleResearchView(
             $researchData['uuid'],
             $researchData['name'],
             $researchData['slug'],
@@ -52,7 +58,6 @@ class DoctrineDBALResearchQuery implements ResearchQuery
             $researchData['description'],
             $researchData['created_at']
         );
-
     }
 
     private function category(string $categoryUuid): ResearchCategoryView
@@ -74,8 +79,43 @@ class DoctrineDBALResearchQuery implements ResearchQuery
         );
     }
 
-    public function findAll(): array
+    public function findBySlug(string $slug): ?SingleResearchView
     {
-        return [];
+        return $this->findBy('slug', $slug);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function findByCategorySlug(string $slug): array
+    {
+        $queryBuilder = $this->connection->createQueryBuilder();
+        $queryBuilder->select(
+            'uuid'
+        )
+            ->from('category')
+            ->where('slug = :slug')
+            ->setParameter('slug', $slug);
+        $categoryUuid = $queryBuilder->executeQuery()->fetchOne();
+
+        $queryBuilder = $this->connection->createQueryBuilder();
+        $queryBuilder->select(
+            'name',
+            'slug',
+            'code',
+            'icd_code',
+        )
+            ->from('research')
+            ->where('category_uuid = :category_uuid')
+            ->setParameter('category_uuid', $categoryUuid);
+        $researchData = $queryBuilder->executeQuery()->fetchAllAssociative();
+        return array_map(static function (array $researchData) {
+            return new ListResearchView(
+                $researchData['name'],
+                $researchData['slug'],
+                $researchData['code'],
+                $researchData['icd_code'],
+            );
+        }, $researchData);
     }
 }

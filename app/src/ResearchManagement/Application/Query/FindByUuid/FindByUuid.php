@@ -5,7 +5,8 @@ namespace App\ResearchManagement\Application\Query\FindByUuid;
 
 use App\Shared\Domain\System\CQRS\Query;
 
-class FindByUuid implements Query
+final class FindByUuid implements Query
+
 {
     public function __construct(
         private readonly string $uuid

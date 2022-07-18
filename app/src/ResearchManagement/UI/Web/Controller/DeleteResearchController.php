@@ -5,7 +5,7 @@ namespace App\ResearchManagement\UI\Web\Controller;
 
 use App\ResearchManagement\Application\Command\Delete\DeleteResearch;
 use App\ResearchManagement\Application\Query\FindByUuid\FindByUuid;
-use App\ResearchManagement\Application\Query\Model\ResearchView;
+use App\ResearchManagement\Application\Query\Model\SingleResearchView;
 use App\Shared\Domain\System\SystemInterface;
 use App\Shared\Infrastructure\Api\ApiController;
 use App\Shared\Infrastructure\Api\ApiResponse;
@@ -23,7 +23,7 @@ class DeleteResearchController extends ApiController
 {
     public function __invoke(string $uuid, SystemInterface $system): ApiResponse
     {
-        /** @var ResearchView $research */
+        /** @var SingleResearchView $research */
         if (!$research = $system->query(new FindByUuid($uuid))) {
             return $this->createApiResponse(status: Response::HTTP_NOT_FOUND);
         }

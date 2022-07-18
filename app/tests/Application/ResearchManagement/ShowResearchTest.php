@@ -39,7 +39,7 @@ class ShowResearchTest extends ApiTestCase
         ]);
 
         // Act
-        $response = $this->makeGetRequest('/researches/' . $uuid->toString());
+        $response = $this->makeGetRequest('/researches/' . $slug->toString());
 
 
         // Assert
@@ -67,7 +67,7 @@ class ShowResearchTest extends ApiTestCase
     public function cannotShowResearchThatDoesNotExists(): void
     {
         // Arrange & Act
-        $response = $this->makeGetRequest('/researches/' . Uuid::uuid4()->toString());
+        $response = $this->makeGetRequest('/researches/not-existing-slug');
 
         // Assert
         $this->assertEquals(404, $response->getStatusCode());

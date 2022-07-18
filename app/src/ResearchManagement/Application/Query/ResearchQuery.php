@@ -3,14 +3,18 @@ declare(strict_types=1);
 
 namespace App\ResearchManagement\Application\Query;
 
-use App\ResearchManagement\Application\Query\Model\ResearchView;
+use App\ResearchManagement\Application\Query\Model\ListResearchView;
+use App\ResearchManagement\Application\Query\Model\SingleResearchView;
 
 interface ResearchQuery
 {
-    public function research(string $uuid): ?ResearchView;
+    public function research(string $uuid): ?SingleResearchView;
+
+    public function findBySlug(string $slug): ?SingleResearchView;
 
     /**
-     * @return ResearchView[]
+     * @param string $slug
+     * @return ListResearchView[]
      */
-    public function findAll(): array;
+    public function findByCategorySlug(string $slug): array;
 }
