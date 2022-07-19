@@ -43,13 +43,19 @@ To install the application you will need:
 git clone https://github.com/Janczur/SimpleShopApi.git .
 ```
 
-2. Install dependencies
+2. Go to /app directory
+
+```shell
+cd app
+```
+
+3. Install dependencies
 
 ```sh
 composer install
 ```
 
-3. Change environment variables to your needs  
+4. Change environment variables to your needs  
    (skip this part for default configuration)   
    [Information about configuring environment](https://symfony.com/doc/6.1/configuration.html#overriding-environment-values-via-env-local)  
    copy ".env" file to ".env.local.dev" and provide valid DB credentials
@@ -58,16 +64,17 @@ composer install
 DATABASE_URL="mysql://symfony:ChangeMe@127.0.0.1:3306/shop?serverVersion=mariadb-10.8.3&charset=utf8mb4"
 ```
 
-4. Run docker-compose to create database in container
+5. Run docker-compose to create database in container
 
 ```sh
 docker-compose up
 ```
 
-5. Create database
+6. Create database and run migrations
 
 ```sh
 php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate --no-interaction
 ```
 
 ### Testing
