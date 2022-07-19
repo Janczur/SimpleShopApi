@@ -10,7 +10,7 @@ use App\ResearchManagement\Domain\Repository\Researches;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
 
-class DoctrineORMResearches implements Researches
+final class DoctrineORMResearches implements Researches
 {
     public function __construct(
         private readonly EntityManagerInterface $entityManager

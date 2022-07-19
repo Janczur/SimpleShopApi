@@ -6,7 +6,7 @@ namespace App\CategoryManagement\Application\Command\Update;
 use App\CategoryManagement\Application\DTO\UpdateCategoryDTO;
 use App\Shared\Domain\System\CQRS\Command;
 
-class UpdateCategory implements Command
+final class UpdateCategory implements Command
 {
     public function __construct(
         private readonly string $uuid,

@@ -8,7 +8,7 @@ use App\CategoryManagement\Domain\Repository\Categories;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
 
-class DoctrineORMCategories implements Categories
+final class DoctrineORMCategories implements Categories
 {
     public function __construct(
         private readonly EntityManagerInterface $entityManager

@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
     requirements: ['uuid' => '%routing.uuid%'],
     methods: ['PATCH']
 )]
-class UpdateResearchController extends ApiController
+final class UpdateResearchController extends ApiController
 {
     public function __invoke(string $uuid, RequestObjectMapper $requestObjectMapper, SystemInterface $system): ApiResponse
     {

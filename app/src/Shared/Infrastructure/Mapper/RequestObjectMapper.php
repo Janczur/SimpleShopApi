@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use UnexpectedValueException;
 
-class RequestObjectMapper
+final class RequestObjectMapper
 {
 
     private Request $request;

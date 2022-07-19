@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
     name: 'researches.create',
     methods: ['POST']
 )]
-class CreateResearchController extends ApiController
+final class CreateResearchController extends ApiController
 {
     public function __invoke(RequestObjectMapper $requestObjectMapper, SystemInterface $system, Researches $researches): ApiResponse
     {

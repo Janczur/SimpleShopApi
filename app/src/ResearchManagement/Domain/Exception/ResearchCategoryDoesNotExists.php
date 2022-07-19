@@ -5,7 +5,7 @@ namespace App\ResearchManagement\Domain\Exception;
 
 use App\Shared\Domain\DomainError;
 
-class ResearchCategoryDoesNotExists extends DomainError
+final class ResearchCategoryDoesNotExists extends DomainError
 {
     public function errorCode(): string
     {

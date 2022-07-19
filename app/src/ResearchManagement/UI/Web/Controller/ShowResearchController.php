@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
     name: 'researches.show',
     methods: ['GET']
 )]
-class ShowResearchController extends ApiController
+final class ShowResearchController extends ApiController
 {
     public function __invoke(string $slug, SystemInterface $system): ApiResponse
     {

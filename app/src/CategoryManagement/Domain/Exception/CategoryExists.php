@@ -6,7 +6,7 @@ namespace App\CategoryManagement\Domain\Exception;
 use App\CategoryManagement\Domain\Entity\Category\Name;
 use App\Shared\Domain\DomainError;
 
-class CategoryExists extends DomainError
+final class CategoryExists extends DomainError
 {
     public function __construct(private readonly Name $name)
     {

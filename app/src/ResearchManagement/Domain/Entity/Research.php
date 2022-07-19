@@ -16,7 +16,7 @@ use DateTimeImmutable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-class Research extends AggregateRoot
+final class Research extends AggregateRoot
 {
     public function __construct(
         private readonly UuidInterface $uuid,

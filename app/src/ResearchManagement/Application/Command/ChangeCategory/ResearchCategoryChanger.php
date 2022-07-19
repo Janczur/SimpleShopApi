@@ -9,7 +9,7 @@ use App\ResearchManagement\Domain\Service\ResearchUniquenessValidator;
 use Ramsey\Uuid\UuidInterface;
 use RuntimeException;
 
-class ResearchCategoryChanger
+final class ResearchCategoryChanger
 {
     public function __construct(
         private readonly ResearchCategoryValidator $categoryValidator,

@@ -6,7 +6,7 @@ namespace App\ResearchManagement\Domain\Exception;
 use App\ResearchManagement\Domain\Entity\Research\Name;
 use App\Shared\Domain\DomainError;
 
-class ResearchExists extends DomainError
+final class ResearchExists extends DomainError
 {
     public function __construct(
         private readonly Name $name,

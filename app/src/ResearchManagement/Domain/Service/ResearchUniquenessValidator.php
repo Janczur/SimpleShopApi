@@ -6,7 +6,7 @@ namespace App\ResearchManagement\Domain\Service;
 use App\ResearchManagement\Domain\Entity\Research\Slug;
 use App\ResearchManagement\Domain\Repository\Researches;
 
-class ResearchUniquenessValidator
+final class ResearchUniquenessValidator
 {
     public function __construct(
         private readonly Researches $researches

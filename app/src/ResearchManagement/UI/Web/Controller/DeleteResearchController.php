@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
     requirements: ['uuid' => '%routing.uuid%'],
     methods: ['DELETE']
 )]
-class DeleteResearchController extends ApiController
+final class DeleteResearchController extends ApiController
 {
     public function __invoke(string $uuid, SystemInterface $system): ApiResponse
     {

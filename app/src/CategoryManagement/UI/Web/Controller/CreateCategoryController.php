@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/categories', name: 'categories.create', methods: ['POST'])]
-class CreateCategoryController extends ApiController
+final class CreateCategoryController extends ApiController
 {
     public function __invoke(RequestObjectMapper $requestObjectMapper, SystemInterface $system, CategoryUniquenessValidator $checker): Response
     {

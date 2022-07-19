@@ -6,7 +6,7 @@ namespace App\ResearchManagement\Application\Command\ChangeCategory;
 use App\Shared\Domain\System\CQRS\CommandHandler;
 use Ramsey\Uuid\Uuid;
 
-class ChangeResearchCategoryHandler implements CommandHandler
+final class ChangeResearchCategoryHandler implements CommandHandler
 {
     public function __construct(
         private readonly ResearchCategoryChanger $categoryChanger

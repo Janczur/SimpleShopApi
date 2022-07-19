@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\Utils;
 
-class Sluggerizer
+final class Sluggerizer
 {
     public static function slugify(string $value): string
     {

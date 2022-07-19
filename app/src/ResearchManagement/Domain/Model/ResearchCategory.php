@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\ResearchManagement\Domain\Model;
 
 
-class ResearchCategory
+final class ResearchCategory
 {
     public function __construct(
         private readonly string $uuid,

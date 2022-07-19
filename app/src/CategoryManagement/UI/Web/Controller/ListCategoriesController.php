@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
     name: 'categories.index',
     methods: ['GET']
 )]
-class ListCategoriesController extends ApiController
+final class ListCategoriesController extends ApiController
 {
     public function __invoke(SystemInterface $system): ApiResponse
     {

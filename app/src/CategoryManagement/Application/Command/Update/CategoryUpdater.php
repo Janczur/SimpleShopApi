@@ -9,7 +9,7 @@ use App\CategoryManagement\Domain\Service\CategoryUniquenessValidator;
 use Ramsey\Uuid\UuidInterface;
 use RuntimeException;
 
-class CategoryUpdater
+final class CategoryUpdater
 {
     public function __construct(
         private readonly Categories $categories,

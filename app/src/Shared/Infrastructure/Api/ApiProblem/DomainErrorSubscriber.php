@@ -8,7 +8,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class DomainErrorSubscriber implements EventSubscriberInterface
+final class DomainErrorSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents(): array
     {
@@ -30,7 +30,7 @@ class DomainErrorSubscriber implements EventSubscriberInterface
         if ($exception->getPrevious() instanceof DomainError) {
             $exception = $exception->getPrevious();
         }
-        
+
         $apiProblem = ApiProblem::withType(ApiProblem::DOMAIN_ERROR);
         $apiProblem->set('detail', $exception->errorMessage());
 

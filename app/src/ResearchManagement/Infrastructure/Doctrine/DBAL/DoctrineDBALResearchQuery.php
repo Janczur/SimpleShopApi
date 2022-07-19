@@ -9,7 +9,7 @@ use App\ResearchManagement\Application\Query\Model\SingleResearchView;
 use App\ResearchManagement\Application\Query\ResearchQuery;
 use Doctrine\DBAL\Connection;
 
-class DoctrineDBALResearchQuery implements ResearchQuery
+final class DoctrineDBALResearchQuery implements ResearchQuery
 {
 
     public function __construct(

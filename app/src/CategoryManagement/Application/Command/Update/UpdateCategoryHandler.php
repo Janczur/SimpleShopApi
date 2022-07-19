@@ -7,7 +7,7 @@ use App\CategoryManagement\Domain\Entity\Category\Name;
 use App\Shared\Domain\System\CQRS\CommandHandler;
 use Ramsey\Uuid\Uuid;
 
-class UpdateCategoryHandler implements CommandHandler
+final class UpdateCategoryHandler implements CommandHandler
 {
     public function __construct(
         private readonly CategoryUpdater $updater

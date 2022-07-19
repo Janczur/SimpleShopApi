@@ -7,7 +7,7 @@ use App\CategoryManagement\Application\Query\CategoryQuery;
 use App\CategoryManagement\Application\Query\Model\CategoryView;
 use App\Shared\Domain\System\CQRS\QueryHandler;
 
-class FindByUuidHandler implements QueryHandler
+final class FindByUuidHandler implements QueryHandler
 {
     public function __construct(
         private readonly CategoryQuery $categoryQuery

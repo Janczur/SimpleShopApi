@@ -7,7 +7,7 @@ use App\CategoryManagement\Application\Query\CategoryQuery;
 use App\CategoryManagement\Application\Query\Model\CategoryView;
 use Doctrine\DBAL\Connection;
 
-class DoctrineDBALCategoryQuery implements CategoryQuery
+final class DoctrineDBALCategoryQuery implements CategoryQuery
 {
     public function __construct(
         private readonly Connection $connection

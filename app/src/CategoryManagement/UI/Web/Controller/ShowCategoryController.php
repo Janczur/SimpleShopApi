@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
     requirements: ['uuid' => '%routing.uuid%'],
     methods: ['GET']
 )]
-class ShowCategoryController extends ApiController
+final class ShowCategoryController extends ApiController
 {
     public function __invoke(string $uuid, SystemInterface $system): ApiResponse
     {

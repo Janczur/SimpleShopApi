@@ -6,7 +6,7 @@ namespace App\Shared\Infrastructure\Api\ApiProblem;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
 
-class ApiExceptionResponseHandler
+final class ApiExceptionResponseHandler
 {
     public function supports(Throwable $exception): bool
     {
