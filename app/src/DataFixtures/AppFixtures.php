@@ -40,6 +40,21 @@ class AppFixtures extends Fixture
                 $manager->persist($research);
             }
         }
+
+        // researches without category
+        for ($i = 0; $i < 5; $i++) {
+            $research = Research::create(
+                $this->researchCategoryValidator,
+                $this->researchUniquenessValidator,
+                Research\Name::from('Research ' . $i),
+                Research\Code::from($i + 1),
+                null,
+                Research\IcdCode::from('A' . $i . $i),
+                'Short description ' . $i,
+                'Description ' . $i
+            );
+            $manager->persist($research);
+        }
         $manager->flush();
     }
 }
