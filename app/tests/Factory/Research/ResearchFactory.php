@@ -37,13 +37,13 @@ final class ResearchFactory extends ModelFactory
     {
         return [
             'uuid' => Uuid::uuid4(),
-            'name' => $name = Research\Name::from(self::faker()->word),
+            'name' => $name = Research\Name::from(self::faker()->word()),
             'slug' => Research\Slug::fromName($name),
             'code' => Research\Code::from(self::faker()->numerify('####')),
             'icdCode' => Research\IcdCode::from(self::faker()->bothify('?##')),
             'categoryUuid' => null,
-            'shortDescription' => self::faker()->text,
-            'description' => self::faker()->text,
+            'shortDescription' => self::faker()->text(),
+            'description' => self::faker()->text(),
             'createdAt' => DateTimeImmutable::createFromMutable(self::faker()->datetime()),
             'updatedAt' => DateTimeImmutable::createFromMutable(self::faker()->datetime()),
         ];
