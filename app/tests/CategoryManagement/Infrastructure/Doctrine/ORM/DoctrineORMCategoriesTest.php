@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class DoctrineORMCategoriesTest extends KernelTestCase
+final class DoctrineORMCategoriesTest extends KernelTestCase
 {
     private Categories $categories;
     private EntityManagerInterface $entityManager;

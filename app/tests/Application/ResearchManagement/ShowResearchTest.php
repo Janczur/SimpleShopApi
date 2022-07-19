@@ -14,7 +14,7 @@ use App\Tests\Factory\Research\ResearchFactory;
 use DateTimeImmutable;
 use Ramsey\Uuid\Uuid;
 
-class ShowResearchTest extends ApiTestCase
+final class ShowResearchTest extends ApiTestCase
 {
 
     /** @test */

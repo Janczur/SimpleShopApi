@@ -7,7 +7,7 @@ use App\Tests\Application\ApiTestCase;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\Response;
 
-class CreateResearchTest extends ApiTestCase
+final class CreateResearchTest extends ApiTestCase
 {
 
     /** @test */

@@ -7,7 +7,7 @@ use App\Shared\Infrastructure\Api\ApiProblem\ApiProblem;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-class ApiProblemTest extends TestCase
+final class ApiProblemTest extends TestCase
 {
     /** @test */
     public function itCorrectlyCreatesApiProblemOfKnownTypes(): void

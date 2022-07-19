@@ -7,7 +7,7 @@ use App\CategoryManagement\Domain\Entity\Category\Slug;
 use PHPUnit\Framework\TestCase;
 use TypeError;
 
-class SlugTest extends TestCase
+final class SlugTest extends TestCase
 {
     /** @test */
     public function itCanOnlyBeCreatedFromTheCategoryName(): void

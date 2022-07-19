@@ -10,7 +10,7 @@ use LogicException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class ApiExceptionResponseHandlerTest extends TestCase
+final class ApiExceptionResponseHandlerTest extends TestCase
 {
     private ApiExceptionResponseHandler $handler;
 

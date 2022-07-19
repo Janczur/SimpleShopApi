@@ -11,7 +11,7 @@ use App\Tests\Factory\Category\CategoryFactory;
 use App\Tests\Factory\Research\ResearchFactory;
 use Ramsey\Uuid\Uuid;
 
-class ListResearchesFromCategorySlugTest extends ApiTestCase
+final class ListResearchesFromCategorySlugTest extends ApiTestCase
 {
     /** @test */
     public function canListResearchesFromCategorySlug(): void

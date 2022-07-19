@@ -6,7 +6,7 @@ namespace App\Tests\Application\CategoryManagement;
 use App\Tests\Application\ApiTestCase;
 use App\Tests\Factory\Category\CategoryFactory;
 
-class ListCategoriesTest extends ApiTestCase
+final class ListCategoriesTest extends ApiTestCase
 {
 
     /** @test */

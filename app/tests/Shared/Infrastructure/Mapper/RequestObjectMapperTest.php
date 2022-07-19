@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class RequestObjectMapperTest extends KernelTestCase
+final class RequestObjectMapperTest extends KernelTestCase
 {
     private ContainerInterface $container;
 

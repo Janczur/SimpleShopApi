@@ -4,7 +4,7 @@ namespace App\ResearchManagement\Domain\Entity\Research;
 
 use PHPUnit\Framework\TestCase;
 
-class SlugTest extends TestCase
+final class SlugTest extends TestCase
 {
     /** @test */
     public function canCreateSlugFromTheTestName(): void

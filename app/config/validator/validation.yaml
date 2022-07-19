@@ -43,6 +43,21 @@ App\ResearchManagement\Application\Command\Create\CreateResearch:
           min: 3
           max: 255
 
+App\ResearchManagement\Application\DTO\RenameResearchDTO:
+  properties:
+    name:
+      - NotBlank: ~
+      - Regex:
+          pattern: !php/const App\ResearchManagement\Domain\Entity\Research\Name::VALID_RESEARCH_NAME_REGEX
+          message: Research name can only contain letters, numbers, spaces, dashes, commas and dots
+      - Length:
+          max: 100
+
+App\ResearchManagement\Application\DTO\ChangeResearchCategoryDTO:
+  properties:
+    categoryUuid:
+      - Uuid: ~
+
 App\ResearchManagement\Application\DTO\UpdateResearchDTO:
   properties:
     code:

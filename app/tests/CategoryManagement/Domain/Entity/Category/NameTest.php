@@ -6,7 +6,7 @@ use App\CategoryManagement\Domain\Entity\Category\Name;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-class NameTest extends TestCase
+final class NameTest extends TestCase
 {
     /** @test */
     public function canCreateNameFromAString(): void

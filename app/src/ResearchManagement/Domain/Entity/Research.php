@@ -135,7 +135,7 @@ class Research extends AggregateRoot
         if ($code && $code->equals($this->code)) {
             $code = null;
         }
-        if ($icdCode && $this->icdCode && $icdCode->equals($this->icdCode)) {
+        if ($icdCode && $icdCode->equals($this->icdCode)) {
             $icdCode = null;
         }
         if ($shortDescription && $shortDescription === $this->shortDescription) {
@@ -152,6 +152,29 @@ class Research extends AggregateRoot
         $this->icdCode = $icdCode ?? $this->icdCode;
         $this->shortDescription = $shortDescription ?? $this->shortDescription;
         $this->description = $description ?? $this->description;
+        $this->updatedAt = new DateTimeImmutable();
+    }
+
+    public function changeCategory(
+        ResearchCategoryValidator $categoryValidator,
+        ResearchUniquenessValidator $uniquenessValidator,
+        ?UuidInterface $categoryUuid
+    ): void
+    {
+        if ($categoryUuid && $categoryUuid->equals($this->categoryUuid)) {
+            return;
+        }
+        if (!$categoryUuid && !$this->categoryUuid) {
+            return;
+        }
+        if ($categoryUuid && !$categoryValidator->exists($categoryUuid->toString())) {
+            throw new ResearchCategoryDoesNotExists();
+        }
+        if ($categoryUuid && !$uniquenessValidator->isUnique($this->slug, $categoryUuid->toString())) {
+            throw new ResearchExists($this->name);
+        }
+        // do some more logic, like public domain event
+        $this->categoryUuid = $categoryUuid;
         $this->updatedAt = new DateTimeImmutable();
     }
 }

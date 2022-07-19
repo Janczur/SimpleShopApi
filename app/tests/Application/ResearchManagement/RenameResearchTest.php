@@ -9,7 +9,7 @@ use App\Tests\Application\ApiTestCase;
 use App\Tests\Factory\Research\ResearchFactory;
 use Ramsey\Uuid\Uuid;
 
-class RenameResearchTest extends ApiTestCase
+final class RenameResearchTest extends ApiTestCase
 {
     /** @test */
     public function canRenameResearch(): void
@@ -62,6 +62,26 @@ class RenameResearchTest extends ApiTestCase
             '{"detail":"Research with name \'First research name\' already exists in current category","status":422,"type":"domain_error","title":"Domain error"}',
             $response->getContent()
         );
+    }
 
+    /** @test */
+    public function cannotRenameResearchToInvalidName(): void
+    {
+        // Arrange
+        ResearchFactory::createOne([
+            'uuid' => $uuid = Uuid::uuid4(),
+        ]);
+
+        // Act
+        $response = $this->makePatchRequest('/researches/rename', $uuid->toString(), [
+            'name' => 'Inva!d &$%#$% name'
+        ]);
+
+        // Assert
+        $this->assertEquals(422, $response->getStatusCode());
+        $this->assertJsonStringEqualsJsonString(
+            '{"errors":{"name":["Research name can only contain letters, numbers, spaces, dashes, commas and dots"]},"status":422,"type":"validation_failed","title":"Validation failed"}',
+            $response->getContent()
+        );
     }
 }

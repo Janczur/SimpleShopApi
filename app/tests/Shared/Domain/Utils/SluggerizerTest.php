@@ -5,7 +5,7 @@ namespace App\Tests\Shared\Domain\Utils;
 use App\Shared\Domain\Utils\Sluggerizer;
 use PHPUnit\Framework\TestCase;
 
-class SluggerizerTest extends TestCase
+final class SluggerizerTest extends TestCase
 {
     /** @test */
     public function itSluggerizesGivenStringCorrectly(): void

@@ -5,7 +5,7 @@ namespace App\ResearchManagement\Domain\Entity\Research;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-class CodeTest extends TestCase
+final class CodeTest extends TestCase
 {
     /** @test */
     public function canCreateCodeFromInteger(): void

@@ -7,7 +7,7 @@ use App\Tests\Application\ApiTestCase;
 use App\Tests\Factory\Research\ResearchFactory;
 use Ramsey\Uuid\Uuid;
 
-class DeleteResearchTest extends ApiTestCase
+final class DeleteResearchTest extends ApiTestCase
 {
     /** @test */
     public function canDeleteExistingResearch(): void

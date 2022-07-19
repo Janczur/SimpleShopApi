@@ -5,7 +5,7 @@ namespace App\ResearchManagement\Domain\Entity\Research;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-class NameTest extends TestCase
+final class NameTest extends TestCase
 {
     /** @test */
     public function itCanBeCreatedFromAString(): void

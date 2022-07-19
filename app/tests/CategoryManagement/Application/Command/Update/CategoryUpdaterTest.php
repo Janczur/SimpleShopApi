@@ -11,7 +11,7 @@ use App\Tests\Factory\Category\CategoryFactory;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class CategoryUpdaterTest extends KernelTestCase
+final class CategoryUpdaterTest extends KernelTestCase
 {
     private readonly CategoryUpdater $categoryUpdater;
     private readonly Categories $categories;

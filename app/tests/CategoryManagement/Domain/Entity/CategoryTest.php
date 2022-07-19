@@ -8,7 +8,7 @@ use App\CategoryManagement\Domain\Service\CategoryUniquenessValidator;
 use App\CategoryManagement\Infrastructure\InMemory\InMemoryCategories;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class CategoryTest extends KernelTestCase
+final class CategoryTest extends KernelTestCase
 {
     private readonly CategoryUniquenessValidator $uniquenessValidator;
     private readonly InMemoryCategories $categories;

@@ -14,7 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class DoctrineORMResearchesTest extends KernelTestCase
+final class DoctrineORMResearchesTest extends KernelTestCase
 {
 
     private readonly Researches $researches;

@@ -11,7 +11,7 @@ use App\Tests\Application\ApiTestCase;
 use App\Tests\Factory\Research\ResearchFactory;
 use Ramsey\Uuid\Uuid;
 
-class UpdateResearchTest extends ApiTestCase
+final class UpdateResearchTest extends ApiTestCase
 {
 
     /** @test */
@@ -57,7 +57,7 @@ class UpdateResearchTest extends ApiTestCase
             'name' => $name = Name::from('Research name'),
             'slug' => $slug = Slug::fromName($name),
             'code' => Code::from(1),
-            'icdCode' => null,
+            'icdCode' => IcdCode::from('A01'),
             'description' => null,
             'shortDescription' => null,
         ]);
